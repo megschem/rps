@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>rps game</title>
+</head>
+<body>
+
+	<h1>Let's play Rock, Paper, Scissors!</h1>
+
+	<div>User's Guess: <span id="user-guess"></span></div>
+	<div>Computer's Guess: <span id="computer-guess"></span></div>
+	<div>User Wins: <span id="user-wins"></span></div>
+	<div>User Losses: <span id="user-losses"></span></div>
+	<div>User Ties: <span id="user-ties"></span></div>
+
+	<script type="text/javascript">
+
+		// Create a rps game between a user and a computer
+		// TODO: Add ability for multiple game plays
+		// TODO: OnKeyUp prompt/event
+
+		// App state
+		var wins = 0; 
+		var losses = 0;
+		var ties = 0;
+		var userGuess = "";
+		var computerGuess = "";
+		var selectionOptions = ["r", "p", "s"];
+
+		// Find elements for scoreboard
+		var userGuessSpan = document.getElementById("user-guess");
+		var computerGuessSpan = document.getElementById("computer-guess");
+		var userWinsSpan = document.getElementById("user-wins");
+		var userLossesSpan = document.getElementById("user-losses");
+		var userTiesSpan = document.getElementById("user-ties");
+
+		// Set the scoreboard for beginning of game
+		userWinsSpan.textContent = wins;
+		userLossesSpan.textContent = losses;
+		userTiesSpan.textContent = ties;
+
+		// User needs to select from 3 options of r,p,s
+		userGuess = prompt("Pick either r, p, or s");
+
+		// The computer needs to select a random choice of r,p,s
+		computerGuess = selectionOptions[Math.floor(Math.random()*selectionOptions.length)];
+
+		// The app needs to compute a score wins, losses, ties
+		// Validate user choices
+		if (userGuess === "r" || userGuess === "p" || userGuess === "s") {
+			// Score the game
+			if (userGuess === "r" && computerGuess === "s") {
+				wins++;
+			}	else if (userGuess === "r" && computerGuess === "p")  {
+				losses++;
+			}	else if (userGuess === "r" && computerGuess === "r")  {
+				ties++;
+
+			}	else if (userGuess === "p" && computerGuess === "r") {
+				wins++;
+			}	else if (userGuess === "p" && computerGuess === "s")  {
+				losses++;
+			}	else if (userGuess === "p" && computerGuess === "p")  {
+				ties++;
+
+			}	else if (userGuess === "s" && computerGuess === "p") {
+				wins++;
+			}	else if (userGuess === "s" && computerGuess === "r")  {
+				losses++;
+			}	else if (userGuess === "s" && computerGuess === "s")  {
+				ties++;
+			}
+		}	else {
+			alert("You chose an incorrect option. Please choose either (r)ock, (p)aper, or (s)cissors.");
+		}
+
+		// The app needs to present to the user a record of on-going scores
+		// Change the scoreboard based on scoring
+		userGuessSpan.textContent = userGuess;
+		computerGuessSpan.textContent = computerGuess;
+		userWinsSpan.textContent = wins;
+		userLossesSpan.textContent = losses;
+		userTiesSpan.textContent = ties;
+
+	</script>
+
+</body>
+</html>
